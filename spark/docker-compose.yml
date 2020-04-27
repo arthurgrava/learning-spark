@@ -1,0 +1,42 @@
+version: "3.7"
+networks:
+    spark-network:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 10.5.0.0/16
+services:
+    master:
+        image: spark-master:latest
+        ports:
+            - "9090:8080"
+            - "7077:7077"
+        volumes:
+            - ./apps:/opt/spark-apps
+            - ./data:/opt/spark-data
+        environment:
+            - "SPARK_LOCAL_IP=master"
+            - AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}"
+            - AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}"
+        networks:
+            spark-network:
+                ipv4_address: 10.5.0.2
+    worker01:
+        image: spark-worker:latest
+        depends_on:
+            - master
+        environment:
+            - SPARK_MASTER=spark://master:7077
+            - SPARK_WORKER_CORES=1
+            - SPARK_WORKER_MEMORY=1024m
+            - SPARK_DRIVER_MEMORY=128m
+            - SPARK_EXECUTOR_MEMORY=256m
+            - AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}"
+            - AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}"
+        volumes:
+            - ./apps:/opt/spark-apps
+            - ./data:/opt/spark-data
+        networks:
+            spark-network:
+                ipv4_address: 10.5.0.3

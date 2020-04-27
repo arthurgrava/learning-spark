@@ -214,5 +214,8 @@ spark-warehouse/
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
-
 # End of https://www.gitignore.io/api/spark,python,visualstudiocode
+
+.environment
+docker/data/*
+!docker/data/sample.txt
