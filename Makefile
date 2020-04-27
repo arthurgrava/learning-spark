@@ -1,7 +1,7 @@
 start-spark:
 	make -C spark start
 
-start-spark:
+stop-spark:
 	make -C spark stop
 
 ssh-master:
