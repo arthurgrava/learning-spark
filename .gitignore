@@ -206,16 +206,13 @@ spark-warehouse/
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
 # End of https://www.gitignore.io/api/spark,python,visualstudiocode
 
+.env
 .environment
 docker/data/*
 !docker/data/sample.txt

@@ -17,8 +17,8 @@ services:
             - ./data:/opt/spark-data
         environment:
             - "SPARK_LOCAL_IP=master"
-            - AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}"
-            - AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}"
+            - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+            - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
         networks:
             spark-network:
                 ipv4_address: 10.5.0.2
