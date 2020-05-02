@@ -5,6 +5,8 @@ COPY spark-master/start.sh /
 # Copying local data added for testing purposes
 RUN mkdir /data
 COPY ./data/* /data/
+RUN mkdir /scripts
+COPY ./scripts/* /scripts/
 
 ENV SPARK_MASTER_PORT 7077
 ENV SPARK_MASTER_WEBUI_PORT 8080
